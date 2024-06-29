@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
-git
+
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
@@ -91,21 +91,13 @@ WSGI_APPLICATION = 'pollme.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': config('ENGINE'),
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': config('NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
+        'PORT': config('PORT'),
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'db_name',
-#         'USER': 'db_user',
-#         'PASSWORD': 'db_user_password',
-#         'HOST': '',
-#         'PORT': 'db_port_number',
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -131,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Dhaka'
+TIME_ZONE = config('TIME_ZONE')
 
 USE_I18N = True
 
