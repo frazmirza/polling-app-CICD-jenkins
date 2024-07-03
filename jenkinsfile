@@ -26,6 +26,10 @@ pipeline {
 	}
         }
         stage('Deploy to production...') { 
+            input {
+            	message "shall we deploy to Production"
+            	ok "Yes Please!"
+            }
             steps {
 	    sh '''
 		ssh -o StrictHostKeyChecking=no  django@192.168.56.103 "source venv/bin/activate; 
