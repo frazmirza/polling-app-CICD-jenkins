@@ -13,15 +13,17 @@ pipeline {
         }
         stage('Deploy') { 
             steps {
-                sh 'ssh django@192.168.56.108" source venv/bin/activate; \
-                project/polling; \
-                git pull origin master; \ 
-                pip install -r requirments.txt --no-warm-script-location; \
-                python manage.py migrate; \
-                deactivate; \
-                sudo systemctl restart nginx; \ 
-                sudo systemctl restart gunicorn; "'
-            }
+	    sh '''
+		ssh django@192.168.56.108 "source venv/bin/activate; 
+		cd project/polling; 
+		git pull origin master; 
+		pip install -r requirements.txt --no-warn-script-location; 
+		python manage.py migrate; 
+		deactivate; 
+		sudo systemctl restart nginx; 
+		sudo systemctl restart gunicorn;"
+	    '''
+}
         }
     }
 }
