@@ -20,7 +20,7 @@ class PollModelTest(TestCase):
 class PollViewTest(TestCase):
     def test_home(self):
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 2001)
 
     def test_login(self):
         User.objects.create_user(username='john', password='rambo')
