@@ -22,5 +22,16 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run tests
+      env:
+        SECRET_KEY: test-secret-key
+        DEBUG: True
+        ALLOWED_HOSTS: localhost,127.0.0.1
+        ENGINE: django.db.backends.sqlite3
+        NAME: db.sqlite3
+        DB_USER: ""
+        PASSWORD: ""
+        HOST: ""
+        PORT: ""
+        TIME_ZONE: UTC
       run: |
         python manage.py test
